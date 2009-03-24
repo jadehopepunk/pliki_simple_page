@@ -1,15 +1,13 @@
 require 'rake'
-require 'rake/testtask'
 require 'rake/rdoctask'
+require 'spec/rake/spectask'
 
 desc 'Default: run unit tests.'
-task :default => :test
-
-desc 'Test the pliki_simple_page plugin.'
-Rake::TestTask.new(:test) do |t|
+task :default => :spec
+ 
+desc 'Test the  plugin.'
+Spec::Rake::SpecTask.new(:spec) do |t|
   t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
 
