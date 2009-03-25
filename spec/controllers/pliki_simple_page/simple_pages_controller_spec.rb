@@ -3,11 +3,15 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../app/controllers/pli
 
 module PlikiSimplePage
   describe SimplePagesController do
+    
+    before(:each) do
+      @instance = Factory.build(:plugin_instance, :plugin_name => 'pliki_simple_page')
+      controller.plugin_instance = @instance
+      controller.send(:initialize_current_url)
+    end
 
-    #Delete this example and add some real ones
     it "should have some tests" do
-      true.should == true
-      # controller.should be_an_instance_of(SimplePagesController)
+      controller.should be_an_instance_of(SimplePagesController)
     end
 
   end
