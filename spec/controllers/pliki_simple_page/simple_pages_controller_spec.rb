@@ -2,16 +2,23 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require File.expand_path(File.dirname(__FILE__) + '/../../../app/controllers/pliki_simple_page/simple_pages_controller')
 
 module PlikiSimplePage
-  describe SimplePagesController do
+  describe SimplePagesController, "when showing page" do
     
-    before(:each) do
-      @instance = Factory.build(:plugin_instance, :plugin_name => 'pliki_simple_page')
-      controller.plugin_instance = @instance
-      controller.send(:initialize_current_url)
+    it "should redirect to edit if no simple page exists" do
+      get :show
+      response.should redirect_to("/prefix/simple_page/edit")
     end
 
-    it "should have some tests" do
-      controller.should be_an_instance_of(SimplePagesController)
+    it "should load simple page for current plugin instance" do
+      page = page_for_current_instance
+      get :show
+      assigns(:simple_page).should == page
+    end
+        
+    it "should return success" do
+      page = page_for_current_instance
+      get :show
+      response.should be_success
     end
 
   end

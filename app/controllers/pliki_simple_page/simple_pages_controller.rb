@@ -24,7 +24,7 @@ module PlikiSimplePage
     protected
         
       def load_simple_page
-        @simple_page = SimplePage.find_by_id(plugin_instance.id)
+        @simple_page = SimplePage.find_by_plugin_instance_id(plugin_instance.id)
       end
   
   end
