@@ -21,6 +21,10 @@ Spec::Runner.configure do |config|
 
   config.include(SimplePageSpecHelpers)
 
+  config.before(:all) do
+    self.class.integrate_views    
+  end
+  
   config.before(:each) do
     @instance = Factory.build(:plugin_instance, :plugin_name => 'pliki_simple_page')
     @instance.stub!(:id).and_return(12)
@@ -30,6 +34,5 @@ Spec::Runner.configure do |config|
     controller.parent_route = PluginInstances::MockRoute.new
     controller.send(:initialize_current_url)
   end
-  
 
 end
