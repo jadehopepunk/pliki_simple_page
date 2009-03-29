@@ -26,7 +26,7 @@ Spec::Runner.configure do |config|
     @instance.stub!(:id).and_return(12)
     @instance.stub!(:new_record?).and_return(false)
 
-    if @controller
+    if @controller && @controller.is_a?(PluginInstances::PluginController)
       controller.plugin_instance = @instance
       controller.parent_route = PluginInstances::MockRoute.new
       controller.send(:initialize_current_url)
