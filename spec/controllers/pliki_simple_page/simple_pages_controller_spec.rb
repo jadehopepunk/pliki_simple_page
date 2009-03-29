@@ -3,6 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../app/controllers/pli
 
 module PlikiSimplePage
   describe SimplePagesController, "when showing page" do
+    integrate_views
+    
     it "should redirect to edit if no simple page exists" do
       get :show
       response.should redirect_to("/prefix/simple_page/edit")
@@ -22,6 +24,8 @@ module PlikiSimplePage
   end
   
   describe SimplePagesController, "when editing page" do
+    integrate_views
+    
     it "should render page" do
       get :edit
       response.should be_success
@@ -29,6 +33,8 @@ module PlikiSimplePage
   end
   
   describe SimplePagesController, "when creating or updating page" do
+    integrate_views
+    
     it "should render edit template if data is invalid" do
       post :create, :simple_page => {}
       response.should render_template('edit')
