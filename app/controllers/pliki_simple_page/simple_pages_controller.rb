@@ -1,5 +1,5 @@
 module PlikiSimplePage
-  class SimplePagesController < PluginInstances::PluginController
+  class SimplePagesController < Pliki::PluginController
     before_filter :load_simple_page, :only => [:show, :edit]
   
     def show
